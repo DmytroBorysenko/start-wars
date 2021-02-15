@@ -1,0 +1,38 @@
+<!-- Компонент для отображения карточки планеты и человека  -->
+
+<mat-card *ngIf="loading || loadingResidents; else page_load" class="example-loading-shade">
+  <mat-spinner></mat-spinner>
+</mat-card>
+<ng-template #page_load >
+    <mat-card class="example-card">
+      <mat-card-content>
+        <ng-container *ngFor="let column of columns">
+            <ng-container *ngIf="!column.typeShow" >
+                <p>
+                  {{column.header}}: {{ entity[column.field]}};
+                </p>
+            </ng-container>
+             <ng-container *ngIf="column.typeShow == 'array'">
+              <p>
+                {{ column.header}}:
+              </p>
+              <ng-container *ngIf="entity[column.field]; else notResident">
+                <ul>
+                  <ng-container *ngFor="let item of entity[column.field]">
+                    <li (click)="item.func()">
+                      {{ item.name}}
+                    </li>
+                  </ng-container>
+                </ul>
+              </ng-container>
+              <ng-template #notResident>
+                <p class="error">
+                  The planet has no Famous residents.
+                </p>
+              </ng-template>
+
+             </ng-container>
+          </ng-container>
+      </mat-card-content>
+    </mat-card>
+</ng-template>

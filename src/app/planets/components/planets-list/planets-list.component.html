@@ -1,0 +1,15 @@
+<!-- Отображу каталог и счетчик страниц -->
+
+<div class="header">
+  <div class="title">
+    PLANETS
+  </div>
+  <div class="counter">
+    <ng-container *ngIf="this.total && this.results">
+      {{ (this.results?.length / 10 )}} / {{ (this.total / 10)}}
+    </ng-container>
+  </div>
+</div>
+
+<app-catalog  [columns]="columns" [data]='data' [cards]='results' [isLoadingResults]="isLoadingResults" [nextURL]="nextPageUrl" (onLoadMore)="loadMore()"> </app-catalog>
+

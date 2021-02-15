@@ -1,0 +1,44 @@
+<!-- Компонент для отображения каталога -->
+
+<div class="mat-elevation-z8" *ngIf="(data | async) as dataLoaded; else spinner">
+  <div class="cards">
+
+    <ng-container *ngFor="let card of cards">
+
+      <mat-card class="example-card">
+        <mat-card-content>
+          <ng-container *ngFor="let column of columns">
+            <ng-container *ngIf="column.mainInfo" >
+              <ng-container *ngIf="column.typeShow == 'img'; else typeText">
+
+                <img [src]="card[column.field]" alt="planets" width="96">
+
+              </ng-container>
+              <ng-template #typeText>
+
+                <p class="info">
+                  {{column.header}}: {{ card[column.field]}}
+                </p>
+
+              </ng-template>
+            </ng-container>
+          </ng-container>
+          <button class="btn" mat-button (click)="planetInfo(card)">Info</button>
+        </mat-card-content>
+      </mat-card>
+
+    </ng-container>
+
+  </div>
+
+  <div class="actions">
+    <button class="btn" mat-button (click)="loadMore()" [disabled]="!nextURL">Load more</button>
+  </div>
+
+</div>
+<ng-template #spinner>
+  <mat-card class="example-loading-shade">
+    <mat-spinner></mat-spinner>
+  </mat-card>
+</ng-template>
+

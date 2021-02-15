@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'STARWARS';
+}
+
+body {
+  background: url(./assets/img/death_star_background.jpg) ;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+}
+
